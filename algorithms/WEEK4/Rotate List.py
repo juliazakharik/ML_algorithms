@@ -11,7 +11,8 @@ Output: [4,5,1,2,3]
 
 
 
-
+#Runtime: 24 ms, faster than 75.09% of Python online submissions for Rotate List.
+#Memory Usage: 13.3 MB, less than 98.66% of Python online submissions for Rotate List.
 
 # Definition for singly-linked list.
 # class ListNode(object):
@@ -27,7 +28,7 @@ class Solution(object):
         """
         if k == 0 or head == None or head.next == None:
             return head
-        
+
         l = 0
         current = head
         tail = head
@@ -36,8 +37,8 @@ class Solution(object):
             if not current.next:
                 tail = current
             current = current.next
-        
-        
+
+
         k = k % l
         if k == 0:
             return head
