@@ -1,0 +1,44 @@
+"""
+682. Baseball Game
+Easy
+You are keeping score for a baseball game with strange rules. The game consists of several rounds, where the scores of past rounds may affect future rounds' scores.
+
+At the beginning of the game, you start with an empty record. You are given a list of strings ops, where ops[i] is the ith operation you must apply to the record and is one of the following:
+
+An integer x - Record a new score of x.
+"+" - Record a new score that is the sum of the previous two scores. It is guaranteed there will always be two previous scores.
+"D" - Record a new score that is double the previous score. It is guaranteed there will always be a previous score.
+"C" - Invalidate the previous score, removing it from the record. It is guaranteed there will always be a previous score.
+Return the sum of all the scores on the record.
+
+ Input: ops = ["5","2","C","D","+"]
+Output: 30
+Explanation:
+"5" - Add 5 to the record, record is now [5].
+"2" - Add 2 to the record, record is now [5, 2].
+"C" - Invalidate and remove the previous score, record is now [5].
+"D" - Add 2 * 5 = 10 to the record, record is now [5, 10].
+"+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
+The total sum is 5 + 10 + 15 = 30.
+
+"""
+
+# Runtime: 28 ms, faster than 63.80% of Python online submissions for Baseball Game.
+# Memory Usage: 13.9 MB, less than 55.72% of Python online submissions for Baseball Game.
+class Solution(object):
+    def calPoints(self, ops):
+        """
+        :type ops: List[str]
+        :rtype: int
+        """
+        scores = []
+        for sc in ops:
+            if sc == "C":
+                scores.pop()
+            elif sc == "D":
+                scores.append(2 * scores[-1])
+            elif sc == "+":
+                scores.append(scores[-1] + scores[-2])
+            else:
+                scores.append(int(sc))
+        return sum(scores)
